@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <title>Калькулятор (логика)</title>
+</head>
+<body>
+    <div class="header">
+        <h2>Strada</h2>
+        <h3>Модуль 2. День 10.</h3>
+        <div style="width: 100px"></div>
+    </div>
+    
+    <div class="main">
+        <div class="container">
+            <h2 class="theme__title">Калькулятор (логика)</h2>
+            <div class="calculator__card">
+                <h2 class="calculator__title">Калькулятор</h2>
+                <div class="digit__block">
+                    <label for="digit-one-get">Введите</label>
+                    <input type="text" id="digit-one-get" placeholder="первое число">
+                </div>
+                <div class="sign__select-block">
+                    <select name="sign" id="sign-select">
+                        <option value="">-- Выберите знак --</option>
+                        <option value="plus">+</option>
+                        <option value="minus">-</option>
+                        <option value="multiply">*</option>
+                        <option value="divide">/</option>
+                    </select>
+                </div>
+                <div class="digit__block">
+                    <label for="digit-two-get">Введите</label>
+                    <input type="text" id="digit-two-get" placeholder="второе число">
+                </div>
+                <button id="result-btn" class="btn">=</button>
+                <h2 id="result-digit">Результат</h2>
+            </div>
+        </div>
+    </div>
+    <script src="calc.js" type="text/javascript"></script>
+</body>
+</html>
