@@ -18,9 +18,9 @@ const isValidate = (value) => isNaN(value) || value.trim() === '';
 function calc(operation, num_one, num_two){
     switch(operation){
     case PLUS:
-        return Math.round((num_one + num_two) * 10) / 10;
+        return (num_one + num_two).toFixed(2);
     case MINUS:
-        return Math.round((num_one - num_two) * 10) / 10;
+        return (num_one - num_two).toFixed(2);;
     case MULTIPLY:
         return num_one * num_two;
     case DIVIDE:
