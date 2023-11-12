@@ -1,4 +1,5 @@
-const ERROR_MESSAGE = "Введите число!";
+const ERROR_INPUT = "Введите число!";
+const ERROR_ZERO = "На 0 делить нельзя!";
 const ERROR_SIGN = "Выберите знак!";
 
 const PLUS = "plus";
@@ -11,6 +12,7 @@ const secondDigit = document.getElementById('digit-two-get');
 const signSelect = document.getElementById('sign-select');
 const btnResult = document.getElementById('result-btn');
 const resultOut = document.getElementById('result-digit');
+const resultBlock = document.getElementById('save-result');
 
 const log = (value) => console.log(value);
 const isValidate = (value) => isNaN(value) || value.trim() === '';
@@ -18,17 +20,32 @@ const isValidate = (value) => isNaN(value) || value.trim() === '';
 function calc(operation, num_one, num_two){
     switch(operation){
     case PLUS:
-        return (num_one + num_two).toFixed(2);
+        return (num_one * 100 + num_two * 100) / 100;
     case MINUS:
-        return (num_one - num_two).toFixed(2);;
+        return (num_one * 100 - num_two * 100) / 100;
     case MULTIPLY:
         return num_one * num_two;
     case DIVIDE:
-        return num_one / num_two;
+        let resultDivide = num_one / num_two;
+        if (resultDivide === Infinity){
+            return ERROR_ZERO;
+        }
+        return resultDivide;
     default:
-      return ERROR_MESSAGE;
+      return 'HI';
     }
 }
+
+function saveResult(digitOne, digitTwo, result){
+    const newElementResult = document.createElement('div');
+    newElementResult.textContent = `${digitOne} + ${digitTwo} = ${result}`;
+    newElementResult.style.marginTop = '5px';
+    resultBlock.insertAdjacentElement('beforeend', newElementResult);
+    newElementResult.addEventListener('click', () => {
+        newElementResult.remove();
+        newElementResult.removeEventListener("click", saveResult);
+    });
+}   
 
 function resultCalculation(){
     const digitOne = firstDigit.value;
@@ -38,9 +55,11 @@ function resultCalculation(){
         resultOut.textContent = ERROR_SIGN;
     }else{
         if(!isValidate(digitOne) && !isValidate(digitTwo)){
-            resultOut.textContent = calc(sign, +digitOne, +digitTwo);
+            const result = calc(sign, +digitOne, +digitTwo); 
+            resultOut.textContent = result;
+            saveResult(digitOne, digitTwo, result);
         }else{
-            resultOut.textContent = ERROR_MESSAGE;
+            resultOut.textContent = ERROR_INPUT;
         }
     }
 }
