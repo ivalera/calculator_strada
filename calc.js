@@ -65,3 +65,4 @@ function resultCalculation(){
 }
 
 btnResult.addEventListener('click', resultCalculation);
+log('❤️');
